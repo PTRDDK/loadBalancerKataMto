@@ -24,6 +24,15 @@ public class ServerVmsCountMatcher extends TypeSafeMatcher<Server> {
     }
 
     protected boolean matchesSafely(Server server) {
-        return expectedVmsCount == server.countVms() || Math.abs(expectedVmsCount - server.countVms()) < 0.01d;
+        return doublesAreEqual(this.expectedVmsCount, server.countVms());
+    }
+
+    private boolean doublesAreEqual(int d1, int d2) {
+        return d1 == d2 || Math.abs(d1 - d2) < 0.01d;
+    }
+
+
+    public static ServerVmsCountMatcher hasAVmsCountOf(int expectedVmsCount) {
+        return new ServerVmsCountMatcher(expectedVmsCount);
     }
 }
