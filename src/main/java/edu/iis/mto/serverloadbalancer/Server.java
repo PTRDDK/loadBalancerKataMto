@@ -29,7 +29,7 @@ public class Server {
     }
 
     private double loadOfVm(Vm vm) {
-        return (double) vm.size / (double) capacity * MAXIMUM_LOAD;
+        return (double) vm.getSize() / (double) getCapacity() * MAXIMUM_LOAD;
     }
 
     public int countVms() {
@@ -38,5 +38,9 @@ public class Server {
 
     public boolean canFit(Vm vm) {
         return currentLoadPercentage + loadOfVm(vm) <= MAXIMUM_LOAD;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }
